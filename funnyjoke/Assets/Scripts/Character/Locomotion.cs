@@ -1,7 +1,8 @@
 using Kickstarter.Inputs;
+using Kickstarter.Observer;
 using UnityEngine;
 
-public class Locomotion : MonoBehaviour, IInputReceiver, ILocomotion
+public class Locomotion : Observable, IInputReceiver, ILocomotion
 {
     [SerializeField] private Vector2Input movementInput;
     [SerializeField] private float movementSpeed;
@@ -25,6 +26,7 @@ public class Locomotion : MonoBehaviour, IInputReceiver, ILocomotion
     private void OnMovementInputChange(Vector2 input)
     {
         rawInput = new Vector3(input.x, 0, input.y);
+        NotifyObservers(rawInput == Vector3.zero ? PlayerAudio.SoundEffects.Idle : PlayerAudio.SoundEffects.Walking);
     }
     #endregion
     

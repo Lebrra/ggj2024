@@ -40,7 +40,7 @@ public static class PlayerProgress
         if (CheckWin()) Debug.LogWarning("WIN");
         else SetNewActive();
     }
-
+    
     public static int GetRemainingObjectiveCount()
     {
         return progress?.Count ?? 0;
