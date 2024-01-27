@@ -565,18 +565,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 284909098, guid: 914c48ed1b317f74db92e4efeabaa971, type: 3}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 284909098, guid: 914c48ed1b317f74db92e4efeabaa971, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 284909098, guid: 914c48ed1b317f74db92e4efeabaa971, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1898449388759243836, guid: 914c48ed1b317f74db92e4efeabaa971, type: 3}
       propertyPath: m_RootOrder
       value: 2
