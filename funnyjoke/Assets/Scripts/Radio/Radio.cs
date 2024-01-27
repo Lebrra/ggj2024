@@ -36,6 +36,12 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
     {
         DisableRecharge();
     }
+
+    private void OnDestroy()
+    {
+        recharging = false;
+        radioActive = false;
+    }
     #endregion
     
     #region InputHandler
