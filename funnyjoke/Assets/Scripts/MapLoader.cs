@@ -11,7 +11,7 @@ public class MapLoader : MonoBehaviour
 {
     public static Func<Transform> GetRandomLandmark;
     public static Func<Transform> GetRandomObjectiveTransform;
-    public static Func<Objective, Transform> GetObjectiveTransform;
+    public static Func<Identifier, Transform> GetObjectiveTransform;
     
     [SerializeField] 
     SpawnPoint[] objectiveSpawns;
@@ -20,7 +20,7 @@ public class MapLoader : MonoBehaviour
     [SerializeField]
     SpawnPoint[] landmarks;
     
-    Dictionary<Objective, SpawnPoint> activeObjectiveSpawns;
+    Dictionary<Identifier, SpawnPoint> activeObjectiveSpawns;
     //List<SpawnPoint> activeHideSpawns;
     
     [SerializeField]
@@ -39,7 +39,7 @@ public class MapLoader : MonoBehaviour
         
         // spawn objectives:
         List<SpawnPoint> tempObjectiveSpawns = objectiveSpawns.OrderBy((_) => rnd.Next()).ToList();
-        activeObjectiveSpawns = new Dictionary<Objective, SpawnPoint>();
+        activeObjectiveSpawns = new Dictionary<Identifier, SpawnPoint>();
         foreach (var objective in objectives.SpawnList)
         {
             SpawnPoint spawnPoint = tempObjectiveSpawns.FirstOrDefault();
@@ -81,9 +81,9 @@ public class MapLoader : MonoBehaviour
         return landmarks.OrderBy((_) => rnd.Next()).FirstOrDefault().transform;
     }
     
-    public Transform GiveObjectivePosition(Objective objective = Objective.Hide)
+    public Transform GiveObjectivePosition(Identifier identifier = Identifier.Hide)
     {
-        if (objective == Objective.Hide)
+        if (identifier == Identifier.Hide)
         {
             // randomly return one
             int rand = UnityEngine.Random.Range(0, activeObjectiveSpawns.Count);
@@ -91,7 +91,7 @@ public class MapLoader : MonoBehaviour
             Debug.Log($"Randomly selected: {selected.loadedSpawnable.key}");
             return selected.transform;
         }
-        else if (activeObjectiveSpawns.ContainsKey(objective)) return activeObjectiveSpawns[objective].transform;
+        else if (activeObjectiveSpawns.ContainsKey(identifier)) return activeObjectiveSpawns[identifier].transform;
         
         Debug.LogError("Error returning objective transform!");
         return null;

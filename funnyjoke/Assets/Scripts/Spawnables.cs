@@ -14,11 +14,11 @@ public class Spawnables : ScriptableObject
 [Serializable]
 public struct Spawnable
 {
-    public Objective key;
+    public Identifier key;
     public GameObject prefab;
 }
 
-public enum Objective
+public enum Identifier
 {
     Landmark = -1,
     Hide = 0,

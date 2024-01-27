@@ -412,6 +412,12 @@ MonoBehaviour:
     loadedSpawnable:
       key: 0
       prefab: {fileID: 0}
+  landmarks:
+  - transform: {fileID: 0}
+    directions: 0
+    loadedSpawnable:
+      key: -1
+      prefab: {fileID: 0}
   objectives: {fileID: 11400000, guid: 29a23a18b3f78ae4e8baff510b262803, type: 2}
   hideables: {fileID: 11400000, guid: 57915ff6d9d835744bd367aaca4c22f1, type: 2}
 --- !u!4 &1396129001
