@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rechargeInput: {fileID: 11400000, guid: a1eaaea7c95bd2e4e8b03e4b53333e86, type: 2}
   rechargeRate: 0.05
+  drainRate: 0.025
 --- !u!82 &284909098
 AudioSource:
   m_ObjectHideFlags: 0

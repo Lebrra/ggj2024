@@ -8,6 +8,7 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
 {
     [SerializeField] private FloatInput rechargeInput;
     [SerializeField] private float rechargeRate;
+    [SerializeField] private float drainRate;
     
     public float BatteryCharge { get; private set; }
 
@@ -60,6 +61,8 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
     {
         if (!radioActive)
             return;
+        if (BatteryCharge <= 0)
+            return;
         audioSource.clip = clip;
         audioSource.Play();
     }
@@ -84,6 +87,7 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
         echoFilter.enabled = false;
         chorusFilter.enabled = false;
         locomotion.SetLocomotionStatus(true);
+        DrainBattery();
     }
 
     private async void RechargeBattery()
@@ -92,6 +96,16 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
         {
             int timeStep = (int)(Time.deltaTime * 1000);
             BatteryCharge += rechargeRate * Time.deltaTime;
+            await Task.Delay(timeStep);
+        }
+    }
+
+    private async void DrainBattery()
+    {
+        while (radioActive)
+        {
+            int timeStep = (int)(Time.deltaTime * 1000);
+            BatteryCharge -= drainRate * Time.deltaTime;
             await Task.Delay(timeStep);
         }
     }
