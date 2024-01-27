@@ -19,5 +19,13 @@ MonoBehaviour:
     m_Id: 0043ffa1-e863-40ab-b445-fe9a0acd6506
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 0bc1d3f5-914a-45ec-98e5-3416279f17e7
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 0
     m_Flags: 0
