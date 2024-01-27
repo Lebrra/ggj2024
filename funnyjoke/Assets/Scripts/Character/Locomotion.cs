@@ -1,7 +1,7 @@
 using Kickstarter.Inputs;
 using UnityEngine;
 
-public class Locomotion : MonoBehaviour, IInputReceiver
+public class Locomotion : MonoBehaviour, IInputReceiver, ILocomotion
 {
     [SerializeField] private Vector2Input movementInput;
     [SerializeField] private float movementSpeed;
@@ -9,6 +9,7 @@ public class Locomotion : MonoBehaviour, IInputReceiver
     private Rigidbody body;
     
     private Vector3 rawInput;
+    private bool locomotionActive = true;
     
     #region InputHandler
     public void RegisterInputs(Player.PlayerIdentifier playerIdentifier)
@@ -35,7 +36,24 @@ public class Locomotion : MonoBehaviour, IInputReceiver
     
     private void FixedUpdate()
     {
+        if (!locomotionActive)
+        {
+            body.velocity = Vector3.zero;
+            return;
+        }
         body.velocity = transform.TransformDirection(rawInput) * movementSpeed;
     }
     #endregion
+    
+    #region Locomotion
+    public void SetLocomotionStatus(bool toggle)
+    {
+        locomotionActive = toggle;
+    }
+    #endregion
+}
+
+public interface ILocomotion
+{
+    public void SetLocomotionStatus(bool toggle);
 }
