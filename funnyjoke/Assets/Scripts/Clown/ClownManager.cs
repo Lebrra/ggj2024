@@ -3,70 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using BeauRoutine;
 public class ClownManager : MonoBehaviour
 {
-    public static ClownManager instance;
-
-    public static Action Clown_Chase;
-    public static Action Clown_Roam;
-    public static Action Clown_Idle;
-    public static Action Clown_Patrol;
+    
+    
     public GameObject player;
 
     private NavMeshAgent agent;
     private float default_speed;
     private NavMeshPath currentPath;
 
-    [SerializeField] private Clown_Level currentStance;
     [SerializeField] private List<Clown_Level> m_Levels = new List<Clown_Level>();
+
     private void Awake() {
-        if(instance == null) {
-            instance = this;
-        } else {
-            Destroy(this.gameObject);
-        }
+        
 
         currentPath = new NavMeshPath();
 
         agent = this.GetComponent<NavMeshAgent>();
-        agent.speed = currentStance.chase_speed;
+        
 
-        Clown_Chase += Chase;
-        Clown_Roam += Roam;
-        Clown_Idle += Idle;
-        Clown_Patrol += Patrol;
+        
     }
 
     private void Start() {
 
-        Clown_Idle();
+        
 
     }
 
+    public void ClownInitialize(Clown_Level level) {
+
+        agent.speed = level.chase_speed;
+
+    }
 
     public void SetDestination(Vector3 location) {
         agent.SetDestination(location);
     }
-
-    private void Chase() {
-        agent.speed = currentStance.chase_speed;
-        StartCoroutine(Stance_Chase());
-
-        
-    }
-    private IEnumerator Stance_Chase(int chaseAmount = 1) {
+    public IEnumerator Stance_Chase(float speed, int maxAmount, int currentChase = 0) {
         Vector3 pos = player.transform.position;
-        
+        agent.speed = speed;
 
         yield return null; //extra frame to allow calculations
         Debug.Log(CalculateDistance(this.transform.position, pos));
         SetDestination(pos);
-        yield return new WaitForSeconds(CalculateDistance(this.transform.position, pos) / currentStance.chase_speed);
+        yield return new WaitForSeconds(CalculateDistance(this.transform.position, pos) / speed);
 
         Debug.Log("Done Chasing");
 
-        if(chaseAmount < currentStance.chaseAmount) {
-            StartCoroutine(Stance_Chase(++chaseAmount));
+        if(currentChase < maxAmount) {
+            StartCoroutine(Stance_Chase(speed, ++currentChase, maxAmount));
         }
 
     }
@@ -76,7 +64,7 @@ public class ClownManager : MonoBehaviour
         StartCoroutine(Stance_Roam());
     }
 
-    private IEnumerator Stance_Roam() {
+    public IEnumerator Stance_Roam() {
 
         agent.SetDestination(MapLoader.GetRandomLandmark().position);
 
@@ -84,12 +72,12 @@ public class ClownManager : MonoBehaviour
     }
 
     private void Idle() {
-        agent.Stop();
+        agent.Stop(); 
 
         StartCoroutine(Stance_Idle());
     }
 
-    private IEnumerator Stance_Idle(float idleTime = 20) {
+    public IEnumerator Stance_Idle(float idleTime = 20) {
         float i = 0;
         float duration = UnityEngine.Random.Range(1, 3);
         float t = idleTime;
@@ -114,7 +102,7 @@ public class ClownManager : MonoBehaviour
 
     }
 
-    private IEnumerator Stance_Patrol() {
+    public IEnumerator Stance_Patrol() {
         yield return null;
     }
 
@@ -147,16 +135,4 @@ public class ClownManager : MonoBehaviour
     }
 }
 
-/// <summary>
-/// Clown Levels are used to hold onto current Clown values. Level increases when objectives are obtained.
-/// </summary>
 
-[Serializable]
-public class Clown_Level {
-    public int id;
-    public float chase_speed;
-    public int chaseAmount; //amount of times the Clown will chase before returning to Roam
-    public Clown_Level(int _id) {
-        id = _id;
-    }
-}
