@@ -7,7 +7,7 @@ public class ClownSight : MonoBehaviour
     
 
     private void OnTriggerEnter(Collider other) {
-        
+        //player death
     }
 
 

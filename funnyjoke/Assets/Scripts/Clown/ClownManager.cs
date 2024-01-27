@@ -42,7 +42,7 @@ public class ClownManager : MonoBehaviour
 
     private void Start() {
 
-        
+        Clown_Idle();
 
     }
 
@@ -79,9 +79,32 @@ public class ClownManager : MonoBehaviour
     }
 
     private void Idle() {
+        agent.Stop();
 
+        StartCoroutine(Stance_Idle());
     }
 
+    private IEnumerator Stance_Idle(float idleTime = 20) {
+        float i = 0;
+        float duration = UnityEngine.Random.Range(1, 3);
+        float t = idleTime;
+        Quaternion newRotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 360), 0));
+        Quaternion currentRotation = transform.rotation;
+        do {
+            t -= Time.deltaTime;
+
+            transform.rotation = Quaternion.Slerp(currentRotation, newRotation, i / duration);
+            i += Time.deltaTime;
+            yield return null;
+        } while (i <= duration);
+
+        if(t > 0) {
+            StartCoroutine(Stance_Idle(t));
+        }
+        yield return null;
+    }
+
+    
     private void Patrol() {
 
     }
