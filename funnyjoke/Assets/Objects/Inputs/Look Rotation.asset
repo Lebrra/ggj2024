@@ -19,5 +19,13 @@ MonoBehaviour:
     m_Id: 0f2678e2-e4b1-42aa-a307-b2b4f1e98652
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b06efd4b-7492-421a-8b14-51b8bc39f461
+      m_Path: <Mouse>/delta
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 0
     m_Flags: 0

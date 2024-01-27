@@ -19,5 +19,45 @@ MonoBehaviour:
     m_Id: 1c78de3d-675b-444a-a9c5-f1cdb77aff49
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: WASD
+      m_Id: 49d506f5-d589-4313-a1c4-b2f73c316907
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 3355d800-b0af-4f8c-bfc1-01cd304963b1
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 84d5b3bd-09ef-42ea-800f-bf7575f4308b
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    - m_Name: left
+      m_Id: a236d1d4-7eee-42a5-bb7c-bd4811950861
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 8778fd77-1fc3-4135-bc06-a5f2467922d8
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
     m_Flags: 0
