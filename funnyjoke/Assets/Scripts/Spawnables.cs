@@ -20,6 +20,7 @@ public struct Spawnable
 
 public enum Objective
 {
+    Landmark = -1,
     Hide = 0,
     Balloon,
     Stuffie,

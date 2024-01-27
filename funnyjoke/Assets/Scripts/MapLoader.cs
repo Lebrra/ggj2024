@@ -9,6 +9,7 @@ using UnityEngine;
 /// </summary>
 public class MapLoader : MonoBehaviour
 {
+    public static Func<Transform> GetRandomLandmark;
     public static Func<Transform> GetRandomObjectiveTransform;
     public static Func<Objective, Transform> GetObjectiveTransform;
     
@@ -16,9 +17,11 @@ public class MapLoader : MonoBehaviour
     SpawnPoint[] objectiveSpawns;
     [SerializeField] 
     SpawnPoint[] hideSpawns;
+    [SerializeField]
+    SpawnPoint[] landmarks;
     
     Dictionary<Objective, SpawnPoint> activeObjectiveSpawns;
-    List<SpawnPoint> activeHideSpawns;
+    //List<SpawnPoint> activeHideSpawns;
     
     [SerializeField]
     Spawnables objectives;
@@ -28,6 +31,7 @@ public class MapLoader : MonoBehaviour
     void Start()
     {
         // assign Actions
+        GetRandomLandmark += GiveLandmark;
         GetRandomObjectiveTransform += () => GiveObjectivePosition();
         GetObjectiveTransform += GiveObjectivePosition;
 
@@ -45,41 +49,38 @@ public class MapLoader : MonoBehaviour
                 Debug.LogError("Tried to load objective that has already spawned!");
             else activeObjectiveSpawns.Add(objective.key, spawnPoint);
             
-            // TODO: spawn
+            if (spawnPoint.transform && objective.prefab) 
+                Instantiate(objective.prefab, spawnPoint.transform);
         }
 
         // spawn hiding spots:
         List<SpawnPoint> tempHideSpawns = hideSpawns.OrderBy((_) => rnd.Next()).ToList();
-        activeHideSpawns = new List<SpawnPoint>();
+        //activeHideSpawns = new List<SpawnPoint>();
         foreach (var hide in hideables.SpawnList)
         {
             SpawnPoint spawnPoint = tempHideSpawns.FirstOrDefault();
             tempHideSpawns.Remove(spawnPoint);
             spawnPoint.loadedSpawnable = hide;
-            activeHideSpawns.Add(spawnPoint);
+            //activeHideSpawns.Add(spawnPoint);
             
-            // TODO: spawn
+            if (spawnPoint.transform && hide.prefab) 
+                Instantiate(hide.prefab, spawnPoint.transform);
         }
-        
-        TESTING();
     }
 
-    void TESTING()
-    {
-        foreach (var item in activeObjectiveSpawns)
-        {
-            Debug.Log($"{item.Key} spawning in {item.Value.directions}");
-        }
-        
-        var test = GetRandomObjectiveTransform?.Invoke();
-    }
-    
     private void OnDestroy()
     {
+        GetRandomLandmark -= GiveLandmark;
         GetRandomObjectiveTransform -= () => GiveObjectivePosition();
         GetObjectiveTransform -= GiveObjectivePosition;
     }
 
+    public Transform GiveLandmark()
+    {
+        System.Random rnd = new System.Random();
+        return landmarks.OrderBy((_) => rnd.Next()).FirstOrDefault().transform;
+    }
+    
     public Transform GiveObjectivePosition(Objective objective = Objective.Hide)
     {
         if (objective == Objective.Hide)
