@@ -15,7 +15,10 @@ public class RadioManager : MonoBehaviour
         set => radioOn = value;
     }
     
-    //[SerializeField]
+    [SerializeField]
+    List<AudioVoicePack> voicePacks;
     
+    AudioVoicePack goodGuy = null;
+    AudioVoicePack badGuy = null;
     
 }
