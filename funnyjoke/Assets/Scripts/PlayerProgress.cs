@@ -1,38 +1,41 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
 public static class PlayerProgress
 {
-    //static Dictionary<Identifier, ObjectiveState> progress;
+    public static Action<int> ProgressUpdate = null;
     
-    static List<Identifier> progress;
+    static List<Identifier> remaining;
     
     static Identifier current = Identifier.Hide;
     public static Identifier Current => current;
 
     public static void InitializeProgress()
     {
-        progress = new List<Identifier>();
-        progress.Add(Identifier.Balloon);
-        progress.Add(Identifier.Hat);
-        progress.Add(Identifier.Stuffie);
-        progress.Add(Identifier.Ticket);
-        progress.Add(Identifier.Cotton_Candy);
+        remaining = new List<Identifier>();
+        remaining.Add(Identifier.Balloon);
+        remaining.Add(Identifier.Hat);
+        remaining.Add(Identifier.Stuffie);
+        remaining.Add(Identifier.Ticket);
+        remaining.Add(Identifier.Cotton_Candy);
+        
+        ProgressUpdate?.Invoke(GetCurrentCompletion());
     }
     
     static void SetNewActive()
     {
         System.Random rnd = new System.Random();
-        current = progress.OrderBy((_) => rnd.Next()).FirstOrDefault();
-        progress.Remove(current);
+        current = remaining.OrderBy((_) => rnd.Next()).FirstOrDefault();
+        remaining.Remove(current);
         
+        ProgressUpdate?.Invoke(GetCurrentCompletion());
     }
     
     public static bool CheckWin()
     {
-        return progress.Count == 0;
+        return remaining.Count == 0;
     }
     
     public static void CompleteObjective()
@@ -41,8 +44,10 @@ public static class PlayerProgress
         else SetNewActive();
     }
     
-    public static int GetRemainingObjectiveCount()
+    public static int GetCurrentCompletion()
     {
-        return progress?.Count ?? 0;
+        int progress = 5 - remaining?.Count ?? 0 + 1;
+        Debug.Log($"Current difficulty level: {progress}");
+        return progress;
     }
 }
