@@ -43,7 +43,7 @@ public static class PlayerProgress
         return remaining.Count > 0 ? remaining : null;
     }
     
-    public static Identifier GetRandomRemaimingObjective()
+    public static Identifier GetRandomRemainingObjective()
     {
         System.Random rnd = new System.Random();
         var remainings = GetRemainingObjectives();
