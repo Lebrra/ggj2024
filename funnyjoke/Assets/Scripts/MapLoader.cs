@@ -10,9 +10,8 @@ using UnityEngine;
 public class MapLoader : MonoBehaviour
 {
     public static Func<Transform> GetRandomLandmark;
-    public static Func<Transform> GetRandomObjectiveTransform;
-    public static Func<Identifier, Transform> GetObjectiveTransform;
-    
+    public static Func<Transform> GetCurrentObjectiveTransform;
+
     [SerializeField] 
     SpawnPoint[] objectiveSpawns;
     [SerializeField] 
@@ -32,8 +31,7 @@ public class MapLoader : MonoBehaviour
     {
         // assign Actions
         GetRandomLandmark += GiveLandmark;
-        GetRandomObjectiveTransform += () => GiveObjectivePosition();
-        GetObjectiveTransform += GiveObjectivePosition;
+        GetCurrentObjectiveTransform += GiveObjectivePosition;
 
         System.Random rnd = new System.Random();
         
@@ -71,8 +69,7 @@ public class MapLoader : MonoBehaviour
     private void OnDestroy()
     {
         GetRandomLandmark -= GiveLandmark;
-        GetRandomObjectiveTransform -= () => GiveObjectivePosition();
-        GetObjectiveTransform -= GiveObjectivePosition;
+        GetCurrentObjectiveTransform -= GiveObjectivePosition;
     }
 
     public Transform GiveLandmark()
@@ -81,20 +78,15 @@ public class MapLoader : MonoBehaviour
         return landmarks.OrderBy((_) => rnd.Next()).FirstOrDefault().transform;
     }
     
-    public Transform GiveObjectivePosition(Identifier identifier = Identifier.Hide)
+    public Transform GiveObjectivePosition()
     {
-        if (identifier == Identifier.Hide)
+        var current = PlayerProgress.Current;
+        if (activeObjectiveSpawns.ContainsKey(current)) return activeObjectiveSpawns[current].transform;
+        else
         {
-            // randomly return one
-            int rand = UnityEngine.Random.Range(0, activeObjectiveSpawns.Count);
-            var selected = activeObjectiveSpawns.Values.ToList()[rand];
-            Debug.Log($"Randomly selected: {selected.loadedSpawnable.key}");
-            return selected.transform;
+            Debug.LogError($"[Map] Cannot give location for {current}");
+            return null;
         }
-        else if (activeObjectiveSpawns.ContainsKey(identifier)) return activeObjectiveSpawns[identifier].transform;
-        
-        Debug.LogError("Error returning objective transform!");
-        return null;
     }
 }
 

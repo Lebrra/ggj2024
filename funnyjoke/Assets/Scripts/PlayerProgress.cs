@@ -5,54 +5,44 @@ using System.Linq;
 
 public static class PlayerProgress
 {
-    static Dictionary<Identifier, bool> progress;
+    //static Dictionary<Identifier, ObjectiveState> progress;
     
+    static List<Identifier> progress;
+    
+    static Identifier current = Identifier.Hide;
+    public static Identifier Current => current;
+
     public static void InitializeProgress()
     {
-        progress = new Dictionary<Identifier, bool>();
-        progress.Add(Identifier.Balloon, false);
-        progress.Add(Identifier.Hat, false);
-        progress.Add(Identifier.Stuffie, false);
-        progress.Add(Identifier.Ticket, false);
-        progress.Add(Identifier.Cotton_Candy, false);
+        progress = new List<Identifier>();
+        progress.Add(Identifier.Balloon);
+        progress.Add(Identifier.Hat);
+        progress.Add(Identifier.Stuffie);
+        progress.Add(Identifier.Ticket);
+        progress.Add(Identifier.Cotton_Candy);
+    }
+    
+    static void SetNewActive()
+    {
+        System.Random rnd = new System.Random();
+        current = progress.OrderBy((_) => rnd.Next()).FirstOrDefault();
+        progress.Remove(current);
+        
     }
     
     public static bool CheckWin()
     {
-        foreach (var pair in progress) 
-            if (!pair.Value) return false;
-        return true;
+        return progress.Count == 0;
     }
     
-    public static void UpdateProgress(Identifier key, bool status)
+    public static void CompleteObjective()
     {
-        if (progress.ContainsKey(key))
-        { 
-            progress[key] = status;
-            var keyword = status ? "collected" : "dropped";
-            Debug.Log($"[Progression] Updated {key} to {keyword}");
-        }
-        if (CheckWin()) Debug.Log("WIN");
-    }
-    
-    public static List<Identifier> GetRemainingObjectives()
-    {
-        var remaining = new List<Identifier>();
-        foreach (var pair in progress) 
-            if (!pair.Value) remaining.Add(pair.Key);
-        return remaining.Count > 0 ? remaining : null;
-    }
-    
-    public static Identifier GetRandomRemainingObjective()
-    {
-        System.Random rnd = new System.Random();
-        var remainings = GetRemainingObjectives();
-        return remainings != null ? remainings.OrderBy((_) => rnd.Next()).FirstOrDefault() : Identifier.Hide;
+        if (CheckWin()) Debug.LogWarning("WIN");
+        else SetNewActive();
     }
     
     public static int GetRemainingObjectiveCount()
     {
-        var remainings = GetRemainingObjectives();
-        return remainings?.Count ?? 0;
+        return progress?.Count ?? 0;
     }
 }
