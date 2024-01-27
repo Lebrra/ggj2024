@@ -337,10 +337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1376057753}
-  currentStance:
-    id: 0
-    chase_speed: 2
-    chaseAmount: 3
   m_Levels: []
 --- !u!1 &767864279
 GameObject:
@@ -583,7 +579,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f68ef53fca4cf489dd2c0e1e3929fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rand: 0
+  clown: {fileID: 465397895}
+  m_Level:
+    chase_speed: 0
+    chaseAmount: 0
+    m_ChasePerc: 25
+    m_RoamPerc: 25
+    m_PatrolPerc: 0
+    m_IdlePerc: 50
+  tempLevel: 0
+  stance: 4
 --- !u!4 &2060341925
 Transform:
   m_ObjectHideFlags: 0
