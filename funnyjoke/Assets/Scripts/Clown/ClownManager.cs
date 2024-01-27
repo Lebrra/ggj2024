@@ -14,10 +14,7 @@ public class ClownManager : MonoBehaviour
     public GameObject player;
 
     private NavMeshAgent agent;
-    private float speed;
-
-
-    
+    private float default_speed;
     private NavMeshPath currentPath;
 
     [SerializeField] private Clown_Level currentStance;
@@ -75,7 +72,15 @@ public class ClownManager : MonoBehaviour
     }
 
     private void Roam() {
+        agent.speed = default_speed;
+        StartCoroutine(Stance_Roam());
+    }
 
+    private IEnumerator Stance_Roam() {
+
+        agent.SetDestination(MapLoader.GetRandomLandmark().position);
+
+        yield return null;
     }
 
     private void Idle() {
@@ -109,6 +114,10 @@ public class ClownManager : MonoBehaviour
 
     }
 
+    private IEnumerator Stance_Patrol() {
+        yield return null;
+    }
+
     /// <summary>
     /// Used for Navmesh distance calculations
     /// </summary>
@@ -127,6 +136,14 @@ public class ClownManager : MonoBehaviour
         }
 
         return dist;
+    }
+
+
+    private void OnCollisionEnter(Collision collision) {
+        if(collision.transform.tag == "Player") {
+            //player dead
+        }
+
     }
 }
 

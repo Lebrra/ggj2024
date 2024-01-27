@@ -7,7 +7,8 @@ public class ClownSight : MonoBehaviour
     
 
     private void OnTriggerEnter(Collider other) {
-        //player death
+        //if player is caught, begin the chase
+        ClownManager.Clown_Chase();
     }
 
 
