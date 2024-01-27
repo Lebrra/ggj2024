@@ -61,8 +61,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: e1f30a736cd2dc74c9619350f51df013, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
@@ -533,6 +533,53 @@ MonoBehaviour:
   lookRotationInput: {fileID: 11400000, guid: 970ebac5a2e39b6498dcd4f48010475e, type: 2}
   rotationSpeed: 0.25
   verticalClamp: 89
+--- !u!1 &2100153975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2100153976}
+  - component: {fileID: 2100153977}
+  m_Layer: 0
+  m_Name: Dayne Mode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2100153976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100153975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1898449388759243836}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2100153977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100153975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4408c68793e55d488b74e9b51b6e93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayneModeInput: {fileID: 11400000, guid: 9658de2ddb959cf4f88d7e2c14235a85, type: 2}
+  comboTime: 1.5
+  countRequired: 3
 --- !u!1 &5278516302849393482
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +615,7 @@ Transform:
   - {fileID: 2024328737}
   - {fileID: 284909095}
   - {fileID: 773965829}
+  - {fileID: 2100153976}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
