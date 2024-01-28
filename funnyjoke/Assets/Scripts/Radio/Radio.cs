@@ -81,7 +81,7 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
         
         if (DEBUG) PlayerProgress.InitializeProgress();
         PlayerProgress.ProgressUpdate += RadioUpdate;
-        //Initialize();
+        Initialize();
     }
 
     private void OnDestroy()
@@ -160,7 +160,7 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
     IEnumerator LoopRadio()
     {
         PlayRadio();
-        yield return UnityEngine.Random.Range(minInterval, maxInterval);
+        yield return audioSource.clip.length + UnityEngine.Random.Range(minInterval, maxInterval);
         radioRoutine.Replace(LoopRadio());
     }
     
@@ -199,6 +199,11 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
             {
                 // TODO: find big bad and play matching audio
                 Debug.LogError("PLAY DIRECTION TO BIG BAD NOW");
+                var hint = badGuy.Directionals.GetBlurb(DirectionUtils.SelectRandomDirection().BreakToString());
+                if (hint.clip)
+                    PlayClip(hint.clip);
+                else 
+                    Debug.LogWarning(badGuy.name + "_" + hint.name);
             }
             else
             {
@@ -258,7 +263,7 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
     IEnumerator FinishIntro()
     {
         // TODO: on radio picked up -> Radio.PickedUpRadio = true;
-        yield return new WaitUntil(() => PickedUpRadio);
+        //yield return new WaitUntil(() => PickedUpRadio);
         
         PlayClip(intro2);
         yield return intro2 ? intro2.length + betweenIntroClipsTime : betweenIntroClipsTime;

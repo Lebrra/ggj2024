@@ -49,15 +49,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUG: 0
-  intro1: {fileID: 0}
-  intro2: {fileID: 0}
+  intro1: {fileID: 8300000, guid: bfe1a24a48bf3554f9bc4e3bc41ea610, type: 3}
+  intro2: {fileID: 8300000, guid: 304d6fdf3916b874094a16cb6baaf6c1, type: 3}
   betweenIntroClipsTime: 1
   voicePacks:
   - {fileID: 11400000, guid: eb31ddafe05b23a489fbaa50fb83ec26, type: 2}
   - {fileID: 11400000, guid: c788cd6af51457c4c9a14f2b72d5bb65, type: 2}
   - {fileID: 11400000, guid: a23148b35f64d17419f49d9e3d7127a4, type: 2}
-  minInterval: 30
-  maxInterval: 60
+  minInterval: 3
+  maxInterval: 10
   percentBreakdowns:
   - helpfulHint: 60
     hurtfulHint: 0
@@ -85,9 +85,9 @@ MonoBehaviour:
     jokeBad: 25
     bigBadPercent: 60
   rechargeInput: {fileID: 11400000, guid: a1eaaea7c95bd2e4e8b03e4b53333e86, type: 2}
-  rechargeRate: 1
-  drainRate: 2
-  batteryMax: 30
+  rechargeRate: 0.05
+  drainRate: 0.025
+  batteryMax: 1
   recharging: 0
   radioAnim: {fileID: 0}
 --- !u!82 &284909098
