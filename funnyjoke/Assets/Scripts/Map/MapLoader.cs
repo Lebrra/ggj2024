@@ -10,7 +10,7 @@ using UnityEngine;
 public class MapLoader : MonoBehaviour
 {
     public static Func<Transform> GetRandomLandmark;
-    public static Func<Transform> GetCurrentObjectiveTransform;
+    public static Func<SpawnPoint> GetCurrentObjective;
 
     [SerializeField] 
     SpawnPoint[] objectiveSpawns;
@@ -27,11 +27,13 @@ public class MapLoader : MonoBehaviour
     [SerializeField]
     Spawnables hideables;
     
+    int lastLandmark = -1;
+    
     void Start()
     {
         // assign Actions
         GetRandomLandmark += GiveLandmark;
-        GetCurrentObjectiveTransform += GiveObjectivePosition;
+        GetCurrentObjective += GiveObjective;
 
         System.Random rnd = new System.Random();
         
@@ -69,23 +71,30 @@ public class MapLoader : MonoBehaviour
     private void OnDestroy()
     {
         GetRandomLandmark -= GiveLandmark;
-        GetCurrentObjectiveTransform -= GiveObjectivePosition;
+        GetCurrentObjective -= GiveObjective;
     }
 
     public Transform GiveLandmark()
     {
-        System.Random rnd = new System.Random();
-        return landmarks.OrderBy((_) => rnd.Next()).FirstOrDefault().transform;
+        if (landmarks == null || landmarks.Length == 0) return null;
+        else if (landmarks.Length == 1) return landmarks.FirstOrDefault().transform;
+        
+        int selected = lastLandmark;
+        while (selected == lastLandmark)
+            selected = UnityEngine.Random.Range(0, landmarks.Length);
+        
+        lastLandmark = selected;
+        return landmarks[selected].transform;
     }
     
-    public Transform GiveObjectivePosition()
+    public SpawnPoint GiveObjective()
     {
         var current = PlayerProgress.Current;
-        if (activeObjectiveSpawns.ContainsKey(current)) return activeObjectiveSpawns[current].transform;
+        if (activeObjectiveSpawns.ContainsKey(current)) return activeObjectiveSpawns[current];
         else
         {
             Debug.LogError($"[Map] Cannot give location for {current}");
-            return null;
+            return new SpawnPoint();
         }
     }
 }
@@ -98,12 +107,3 @@ public struct SpawnPoint
     public Spawnable loadedSpawnable;
 }
 
-[Flags]
-public enum Direction
-{
-        North = 2,
-        East = 4,
-        South = 8,
-        West = 16,
-        Central = 32
-}
