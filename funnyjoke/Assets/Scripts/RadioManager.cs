@@ -6,6 +6,11 @@ using UnityEngine;
 
 public class RadioManager : MonoBehaviour
 {
+    // TODO: merge with Radio.cs 
+    
+    [SerializeField]
+    bool DEBUG = false;
+    
     [SerializeField] 
     float minInterval = 30F;
     [SerializeField]
@@ -28,12 +33,14 @@ public class RadioManager : MonoBehaviour
     [SerializeField]
     List<RadioPercent> percentBreakdowns;
     int currentPercent = -1;
+    
+    bool lastPlayedHelpfulDirection;
 
     Routine radioRoutine;
 
     private void Start()
     {
-        //PlayerProgress.InitializeProgress();
+        if (DEBUG) PlayerProgress.InitializeProgress();
         PlayerProgress.ProgressUpdate += RadioUpdate;
         Initialize();
     }
@@ -49,39 +56,56 @@ public class RadioManager : MonoBehaviour
         goodGuy = voicePacks[good];
         badGuy = voicePacks[bad];
         
+        lastPlayedHelpfulDirection = UnityEngine.Random.Range(0, 10) % 2 == 0;
+        
         currentPercent = 0;
-        radioRoutine.Replace(QueueRadio());
+        // TODO: intro before radio
+        if (DEBUG) radioRoutine.Replace(StartRadio());
     }
     
     void RadioUpdate(int level)
     {
         currentPercent = level;
+        lastPlayedHelpfulDirection = UnityEngine.Random.Range(0, 10) % 2 == 0;
+        
+        // TODO: maybe cut out radio and play a specific line or something
+    }
+    
+    IEnumerator StartRadio()
+    {
+        PlayJoke();
+        yield return maxInterval;
+        radioRoutine.Replace(QueueRadio());
     }
     
     IEnumerator QueueRadio()
     {
         PlayRadio();
-        
         yield return UnityEngine.Random.Range(minInterval, maxInterval);
-        
         radioRoutine.Replace(QueueRadio());
     }
     
-    void PlayRadio()
+    void PlayRadio(int forceType = -1)
     {
-        int selection = UnityEngine.Random.Range(1, 101);
+        int selection = forceType;
+        if (forceType is < 0 or > 100) selection = UnityEngine.Random.Range(1, 101);
         float cumulativeLogic = percentBreakdowns[currentPercent].helpfulHint;
         
         // play helpful hint
         if (selection <= cumulativeLogic)
         {
             Debug.Log($"Play the correct direction clip for the current objective spoken by the good guy");
-            var hint = goodGuy.Directionals.GetBlurb(MapLoader.GetCurrentObjective.Invoke().directions.BreakToString());
+            VOBlurb hint;
+            if (lastPlayedHelpfulDirection) 
+                hint = goodGuy.Directionals.GetBlurb(MapLoader.GetCurrentObjective.Invoke().directions.BreakToString());
+            else 
+                hint = goodGuy.Helpfuls.GetBlurb(PlayerProgress.Current.ToString().ToLower());
+            lastPlayedHelpfulDirection = !lastPlayedHelpfulDirection;
             
             if (hint.clip)
                 AudioManager.PlayClip(hint.clip);
             else 
-                Debug.Log(goodGuy + "_" + hint.name);
+                Debug.Log(goodGuy.name + "_" + hint.name);
             return;
         }
         cumulativeLogic += percentBreakdowns[currentPercent].hurtfulHint;
@@ -93,6 +117,7 @@ public class RadioManager : MonoBehaviour
             if (findBigBad)
             {
                 // TODO: find big bad and play matching audio
+                Debug.LogError("PLAY DIRECTION TO BIG BAD NOW");
             }
             else
             {
@@ -100,7 +125,7 @@ public class RadioManager : MonoBehaviour
                 if (hint.clip)
                     AudioManager.PlayClip(hint.clip);
                 else 
-                    Debug.Log(goodGuy + "_" + hint.name);
+                    Debug.Log(badGuy.name + "_" + hint.name);
             }
             return;
         }
@@ -113,7 +138,7 @@ public class RadioManager : MonoBehaviour
             if (joke.clip)
                 AudioManager.PlayClip(joke.clip);
             else 
-                Debug.Log(goodGuy + "_" + joke.name);
+                Debug.Log(goodGuy.name + "_" + joke.name);
             return;
         }
         cumulativeLogic += percentBreakdowns[currentPercent].jokeBad;
@@ -125,22 +150,28 @@ public class RadioManager : MonoBehaviour
             if (joke.clip)
                 AudioManager.PlayClip(joke.clip);
             else 
-                Debug.Log(goodGuy + "_" + joke.name);
+                Debug.Log(badGuy.name + "_" + joke.name);
             return;
         }
         
         Debug.LogError("[Radio] Error in percentage breakdown - we shouldn't be here!");
+    }
+    
+    public void PlayJoke()
+    {
+        // assuming it could be from either guy
+        PlayRadio(UnityEngine.Random.Range(100 - percentBreakdowns[currentPercent].jokeGood, 101));
     }
 }
 
 [Serializable]
 public struct RadioPercent
 {
-    public float helpfulHint;
-    public float hurtfulHint;
-    public float jokeGood;
-    public float jokeBad;
-    
-    public float bigBadPercent;
+    public int helpfulHint;
+    public int hurtfulHint;
+    public int jokeGood;
+    public int jokeBad;
+    [Space]
+    public int bigBadPercent;
     // percent of other bad hint?
 }

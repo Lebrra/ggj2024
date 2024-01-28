@@ -346,6 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83f66c2a1dfb9a4fa29bf1adf087810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEBUG: 1
   minInterval: 2
   maxInterval: 8
   radioOn: 0
@@ -358,7 +359,7 @@ MonoBehaviour:
     hurtfulHint: 0
     jokeGood: 25
     jokeBad: 25
-    bigBadPercent: 10
+    bigBadPercent: 0
   - helpfulHint: 0
     hurtfulHint: 0
     jokeGood: 0
@@ -391,8 +392,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a89f66679e5834c9cf2e6b0e051f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectiveSpawns: []
-  hideSpawns: []
+  objectiveSpawns:
+  - transform: {fileID: 0}
+    directions: 4
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  - transform: {fileID: 0}
+    directions: 2
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  - transform: {fileID: 0}
+    directions: 2
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  - transform: {fileID: 0}
+    directions: 36
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  - transform: {fileID: 0}
+    directions: 24
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  - transform: {fileID: 0}
+    directions: 8
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  - transform: {fileID: 0}
+    directions: 4
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  hideSpawns:
+  - transform: {fileID: 0}
+    directions: 0
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  - transform: {fileID: 0}
+    directions: 0
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  - transform: {fileID: 0}
+    directions: 0
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  - transform: {fileID: 0}
+    directions: 0
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  - transform: {fileID: 0}
+    directions: 0
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
   landmarks:
   - transform: {fileID: 0}
     directions: 40
