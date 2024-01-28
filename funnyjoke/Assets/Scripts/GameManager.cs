@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         InitializeStateMachine();
+        PlayerProgress.InitializeProgress();
     }
 
     private void OnEnable()

@@ -6,6 +6,7 @@ using System.Linq;
 public static class PlayerProgress
 {
     public static Action<int> ProgressUpdate = null;
+    public static Action<Identifier> ObjectComplete = null;
     
     static List<Identifier> remaining;
     
@@ -40,6 +41,7 @@ public static class PlayerProgress
     
     public static void CompleteObjective()
     {
+        ObjectComplete?.Invoke(current);
         if (CheckWin()) Debug.LogWarning("WIN");
         else SetNewActive();
     }

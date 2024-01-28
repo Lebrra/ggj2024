@@ -17,7 +17,7 @@ public class MapLoader : MonoBehaviour
     [SerializeField] 
     SpawnPoint[] hideSpawns;
     [SerializeField]
-    SpawnPoint[] landmarks;
+    Transform[] landmarks;
     
     Dictionary<Identifier, SpawnPoint> activeObjectiveSpawns;
     //List<SpawnPoint> activeHideSpawns;
@@ -44,13 +44,13 @@ public class MapLoader : MonoBehaviour
         {
             SpawnPoint spawnPoint = tempObjectiveSpawns.FirstOrDefault();
             tempObjectiveSpawns.Remove(spawnPoint);
-            spawnPoint.loadedSpawnable = objective;
+            
             if (activeObjectiveSpawns.ContainsKey(objective.key))
                 Debug.LogError("Tried to load objective that has already spawned!");
             else activeObjectiveSpawns.Add(objective.key, spawnPoint);
             
             if (spawnPoint.transform && objective.prefab) 
-                Instantiate(objective.prefab, spawnPoint.transform);
+                spawnPoint.loadedSpawnable = Instantiate(objective.prefab, spawnPoint.transform).transform;
         }
 
         // spawn hiding spots:
@@ -60,11 +60,10 @@ public class MapLoader : MonoBehaviour
         {
             SpawnPoint spawnPoint = tempHideSpawns.FirstOrDefault();
             tempHideSpawns.Remove(spawnPoint);
-            spawnPoint.loadedSpawnable = hide;
             //activeHideSpawns.Add(spawnPoint);
             
             if (spawnPoint.transform && hide.prefab) 
-                Instantiate(hide.prefab, spawnPoint.transform);
+                spawnPoint.loadedSpawnable = Instantiate(hide.prefab, spawnPoint.transform).transform;
         }
     }
 
@@ -77,7 +76,7 @@ public class MapLoader : MonoBehaviour
     public Transform GiveLandmark()
     {
         if (landmarks == null || landmarks.Length == 0) return null;
-        else if (landmarks.Length == 1) return landmarks.FirstOrDefault().transform;
+        else if (landmarks.Length == 1) return landmarks.FirstOrDefault();
         
         int selected = lastLandmark;
         while (selected == lastLandmark)
@@ -104,6 +103,6 @@ public struct SpawnPoint
 {
     public Transform transform;
     public Direction directions;
-    public Spawnable loadedSpawnable;
+    public Transform loadedSpawnable;
 }
 
