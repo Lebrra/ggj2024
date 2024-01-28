@@ -7,11 +7,9 @@ public class MazeGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject wallPrefab;
     [Space]
-    [Min(1)]
-    [SerializeField] private int numRoomsOnFloor = 1;
-    [Space]
     [SerializeField] private Vector2Int numRoomsPerDirection;
-    [SerializeField] private Vector2 roomSizes;
+    [SerializeField] private float verticalOffset;
+    [SerializeField] private Vector2 spacingMultiplier;
 
     private readonly List<(int x, int z)> potentialRooms = new List<(int x, int z)>();
     private readonly Dictionary<GameObject, int> roomIndices = new Dictionary<GameObject, int>();
@@ -29,6 +27,8 @@ public class MazeGenerator : MonoBehaviour
     private void Start()
     {
         InitializeLayout();
+        Destroy(roomParent);
+        wallsParent.transform.position = transform.position + verticalOffset * Vector3.up;
     }
 
     public void InitializeLayout()
@@ -37,7 +37,7 @@ public class MazeGenerator : MonoBehaviour
         CreateRoomPlacements();
         roomParent = new GameObject("Rooms");
         wallsParent = new GameObject("Walls");
-        unionFind = new UnionFind(numRoomsOnFloor);
+        unionFind = new UnionFind(numRoomsPerDirection.x * numRoomsPerDirection.y);
 
         for (int i = 0; i < roomLayout.GetLength(0); i++)
         {
@@ -71,7 +71,7 @@ public class MazeGenerator : MonoBehaviour
         roomLayout[roomCoordinates.x, roomCoordinates.z] = true;
         AddNeighbors(roomCoordinates.x, roomCoordinates.z);
 
-        for (int i = 0; i < numRoomsOnFloor - 1; i++)
+        for (int i = 0; i < numRoomsPerDirection.x * numRoomsPerDirection.y - 1; i++)
         {
             roomCoordinates = potentialRooms[Random.Range(0, potentialRooms.Count)];
             roomLayout[roomCoordinates.x, roomCoordinates.z] = true;
@@ -117,6 +117,8 @@ public class MazeGenerator : MonoBehaviour
 
     private void PlaceWalls(int xIndex, int zIndex)
     {
+        var box = wallPrefab.GetComponentInChildren<BoxCollider>(); 
+        var roomSizes = new Vector2(box.size.x * box.transform.localScale.x * spacingMultiplier.x, box.size.z * box.transform.localScale.z * spacingMultiplier.y);
         int currentRoomIndex = roomIndices[rooms[(xIndex, zIndex)]];
         (float x, float z) coordinates = (xIndex * roomSizes.x, zIndex * roomSizes.y);
         var offsets = new Vector3(roomSizes.x / 2, 0, roomSizes.y / 2);

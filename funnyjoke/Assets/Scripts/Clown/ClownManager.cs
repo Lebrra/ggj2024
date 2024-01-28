@@ -36,7 +36,7 @@ public class ClownManager : MonoBehaviour
 
     public void ClownInitialize(Clown_Level level) {
 
-        agent.speed = level.chase_speed;
+        agent.speed = default_speed;
 
     }
 

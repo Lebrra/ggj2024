@@ -21,24 +21,28 @@ public class Interacting : MonoBehaviour, IInputReceiver
     
     bool isEnabled = true;
     bool canInteract = false;
+    Routine distanceRoutine;
     
     public void DeregisterInputs(Player.PlayerIdentifier playerIdentifier)
     {
         m_interact.DeregisterInput(takeInput, playerIdentifier);
         PlayerProgress.ObjectComplete -= UpdateInventoryUI;
+        PlayerProgress.ProgressUpdate -= Enable;
     }
 
     public void RegisterInputs(Player.PlayerIdentifier playerIdentifier)
     {
         m_interact.RegisterInput(takeInput, playerIdentifier);
         PlayerProgress.ObjectComplete += UpdateInventoryUI;
+        PlayerProgress.ProgressUpdate += Enable;
     }
 
-    private void Start()
+    public void Enable(int _)
     {
-        Routine.Start(CheckForDistance());
+        isEnabled = true;
+        distanceRoutine.Replace(CheckForDistance());
     }
-    
+
     IEnumerator CheckForDistance()
     {
         while (isEnabled)
@@ -87,6 +91,8 @@ public class Interacting : MonoBehaviour, IInputReceiver
         if (canInteract && isEnabled)
         {
             isEnabled = false;
+            distanceRoutine.Stop();
+            
             PlayerProgress.CompleteObjective();
             // trigger next objective 
         }
