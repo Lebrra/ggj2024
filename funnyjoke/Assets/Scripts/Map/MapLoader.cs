@@ -34,6 +34,8 @@ public class MapLoader : MonoBehaviour
         // assign Actions
         GetRandomLandmark += GiveLandmark;
         GetCurrentObjective += GiveObjective;
+        PlayerProgress.ObjectComplete += ObjectiveComplete;
+        PlayerProgress.ProgressUpdate += UpdateActiveObjective;
 
         System.Random rnd = new System.Random();
         
@@ -65,12 +67,17 @@ public class MapLoader : MonoBehaviour
             if (spawnPoint.transform && hide.prefab) 
                 spawnPoint.loadedSpawnable = Instantiate(hide.prefab, spawnPoint.transform).transform;
         }
+        
+        // animate first one up
+        UpdateActiveObjective(-1);
     }
 
     private void OnDestroy()
     {
         GetRandomLandmark -= GiveLandmark;
         GetCurrentObjective -= GiveObjective;
+        PlayerProgress.ObjectComplete -= ObjectiveComplete;
+        PlayerProgress.ProgressUpdate -= UpdateActiveObjective;
     }
 
     public Transform GiveLandmark()
@@ -95,6 +102,21 @@ public class MapLoader : MonoBehaviour
             Debug.LogError($"[Map] Cannot give location for {current}");
             return new SpawnPoint();
         }
+    }
+    
+    void ObjectiveComplete(Identifier objective)
+    {
+        if (activeObjectiveSpawns.ContainsKey(objective)) 
+            activeObjectiveSpawns[objective].loadedSpawnable.
+                GetComponent<Animator>()?.SetBool("elevator", false);
+    }
+    
+    void UpdateActiveObjective(int _)
+    {
+        if (activeObjectiveSpawns.ContainsKey(PlayerProgress.Current)) 
+            activeObjectiveSpawns[PlayerProgress.Current].loadedSpawnable.
+                GetComponent<Animator>()?.SetBool("elevator", true);
+        else Debug.LogError($"[Map] Error setting anim for {PlayerProgress.Current}");
     }
 }
 
