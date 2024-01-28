@@ -18,7 +18,7 @@ MonoBehaviour:
   badIntro:
     name: 
     clip: {fileID: 0}
-  directionalBlurbs: {fileID: 11400000, guid: 77a92f5765c8a7248b2ee6de99873568, type: 2}
-  jokeBlurbs: {fileID: 11400000, guid: 77a92f5765c8a7248b2ee6de99873568, type: 2}
-  helpfulBlurbs: {fileID: 11400000, guid: 77a92f5765c8a7248b2ee6de99873568, type: 2}
-  hurtfulBlurbs: {fileID: 11400000, guid: 77a92f5765c8a7248b2ee6de99873568, type: 2}
+  directionalBlurbs: {fileID: 11400000, guid: c298ec828ec65d34bbcc44b90643aa69, type: 2}
+  jokeBlurbs: {fileID: 11400000, guid: 41af5b6948ce2f84eabd0aa0111aa4b7, type: 2}
+  helpfulBlurbs: {fileID: 11400000, guid: 1e73cc9a854247b40b54e000c0105c03, type: 2}
+  hurtfulBlurbs: {fileID: 11400000, guid: cde157017ebda2644a35440ac8927f65, type: 2}
