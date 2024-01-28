@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnList:
   - key: 1
-    prefab: {fileID: 0}
+    prefab: {fileID: 7766500857413987433, guid: 325078ffb41c12740b5c5c3e26113187, type: 3}
   - key: 2
-    prefab: {fileID: 0}
+    prefab: {fileID: 5569385655781539271, guid: f65d38ffebf14d148a664cce28d65b5e, type: 3}
   - key: 3
-    prefab: {fileID: 0}
+    prefab: {fileID: 1288791130649864686, guid: f3ebdc4f93819414f8c3ae7798955fc5, type: 3}
   - key: 4
-    prefab: {fileID: 0}
+    prefab: {fileID: 6003825871827389007, guid: 2331acf3306668a499ffdf85a69d18e5, type: 3}
   - key: 5
-    prefab: {fileID: 0}
+    prefab: {fileID: 7061734888856404491, guid: 04968a089ee61fc4989350a049416e4a, type: 3}
