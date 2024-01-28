@@ -14,19 +14,14 @@ public class MapLoader : MonoBehaviour
 
     [SerializeField] 
     SpawnPoint[] objectiveSpawns;
-    [SerializeField] 
-    SpawnPoint[] hideSpawns;
     [SerializeField]
     Transform[] landmarks;
     
     Dictionary<Identifier, SpawnPoint> activeObjectiveSpawns;
-    //List<SpawnPoint> activeHideSpawns;
-    
+
     [SerializeField]
     Spawnables objectives;
-    [SerializeField]
-    Spawnables hideables;
-    
+
     int lastLandmark = -1;
     
     void Start()
@@ -49,23 +44,11 @@ public class MapLoader : MonoBehaviour
             
             if (activeObjectiveSpawns.ContainsKey(objective.key))
                 Debug.LogError("Tried to load objective that has already spawned!");
-            else activeObjectiveSpawns.Add(objective.key, spawnPoint);
-            
-            if (spawnPoint.transform && objective.prefab) 
+            else
+            { 
                 spawnPoint.loadedSpawnable = Instantiate(objective.prefab, spawnPoint.transform).transform;
-        }
-
-        // spawn hiding spots:
-        List<SpawnPoint> tempHideSpawns = hideSpawns.OrderBy((_) => rnd.Next()).ToList();
-        //activeHideSpawns = new List<SpawnPoint>();
-        foreach (var hide in hideables.SpawnList)
-        {
-            SpawnPoint spawnPoint = tempHideSpawns.FirstOrDefault();
-            tempHideSpawns.Remove(spawnPoint);
-            //activeHideSpawns.Add(spawnPoint);
-            
-            if (spawnPoint.transform && hide.prefab) 
-                spawnPoint.loadedSpawnable = Instantiate(hide.prefab, spawnPoint.transform).transform;
+                activeObjectiveSpawns.Add(objective.key, spawnPoint);
+            }
         }
         
         // animate first one up
@@ -107,14 +90,17 @@ public class MapLoader : MonoBehaviour
     void ObjectiveComplete(Identifier objective)
     {
         if (activeObjectiveSpawns.ContainsKey(objective)) 
-            activeObjectiveSpawns[objective].loadedSpawnable.
-                GetComponent<Animator>()?.SetBool("elevator", false);
+        {
+           var anim = activeObjectiveSpawns[objective].loadedSpawnable.GetComponent<Animator>();
+           anim?.SetBool("elevator", false);
+        }
+        
     }
     
     void UpdateActiveObjective(int _)
     {
         if (activeObjectiveSpawns.ContainsKey(PlayerProgress.Current)) 
-            activeObjectiveSpawns[PlayerProgress.Current].loadedSpawnable.
+            activeObjectiveSpawns[PlayerProgress.Current].loadedSpawnable?.
                 GetComponent<Animator>()?.SetBool("elevator", true);
         else Debug.LogError($"[Map] Error setting anim for {PlayerProgress.Current}");
     }
