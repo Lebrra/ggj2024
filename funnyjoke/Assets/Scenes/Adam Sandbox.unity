@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.007927345, g: 0.010677472, b: 0.01387593, a: 1}
+  m_IndirectSpecularColor: {r: 0.007913498, g: 0.010640509, b: 0.013821798, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8238,6 +8238,7 @@ GameObject:
   - component: {fileID: 465397892}
   - component: {fileID: 465397891}
   - component: {fileID: 465397895}
+  - component: {fileID: 465397896}
   m_Layer: 0
   m_Name: CLOWN
   m_TagString: Untagged
@@ -8348,6 +8349,19 @@ MonoBehaviour:
   player: {fileID: 1188788587}
   default_speed: 2
   m_Levels: []
+--- !u!65 &465397896
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465397890}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6349716, y: 1.2607535, z: 1.2714081}
+  m_Center: {x: 0.018527985, y: 0.36962324, z: -0.015365601}
 --- !u!1 &466097207
 GameObject:
   m_ObjectHideFlags: 0
