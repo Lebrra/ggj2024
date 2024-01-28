@@ -156,7 +156,7 @@ public class MazeGenerator : MonoBehaviour
         if (data.OnEdge())
             buildPathway = roomLayout[data.Pathway.xIndex(), data.Pathway.zIndex()];
         int neighborIndex = rooms.TryGetValue(data.RoomsIndex, out var room) ? roomIndices[room] : -1;
-        ReduceToHamiltonianPath(ref buildPathway, roomIndex - 1, neighborIndex);
+        ReduceToHamiltonianPath(ref buildPathway, data.RoomIndex, neighborIndex);
         if (!buildPathway)
             Instantiate(wallPrefab, data.WallPosition, data.WallRotation, wallsParent.transform);
         exitBuilt = true;
@@ -184,6 +184,8 @@ public class MazeGenerator : MonoBehaviour
         var closed = new List<Vector2Int>();
         for (int i = 0; i < numRoomsPerDirection.x * numRoomsPerDirection.y; i++)
         {
+            if (x * y == 72)
+                Debug.Log("");
             PlaceWalls(x, y);
             closed.Add(new Vector2Int(x, y));
             
