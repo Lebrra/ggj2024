@@ -57,9 +57,11 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
     private AudioChorusFilter chorusFilter;
 
     private ILocomotion locomotion;
-
+    [SerializeField]
     private bool recharging;
     private bool radioActive;
+    [SerializeField]
+    private Animator radioAnim;
     
     #region UnityEvents
     private void Awake()
@@ -290,6 +292,8 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
     {
         recharging = true;
         radioActive = false;
+        radioAnim.SetBool("Crank", true);
+        radioAnim.SetBool("On", false);
         reverbFilter.enabled = true;
         echoFilter.enabled = true;
         chorusFilter.enabled = true;
@@ -300,6 +304,8 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
     private void DisableRecharge()
     {
         recharging = false;
+        radioAnim.SetBool("Crank", false);
+        radioAnim.SetBool("On", true);
         radioActive = true;
         reverbFilter.enabled = false;
         echoFilter.enabled = false;
@@ -325,25 +331,41 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
         while (radioActive)
         {
             int timeStep = (int)(Time.deltaTime * 1000);
+            //radioAnim.SetBool("On", true);
             BatteryCharge -= drainRate * Time.deltaTime;
             if (BatteryCharge <= 0F && volumeOn)
+            {
+                
                 volumeRoutine.Replace(LerpVolume(false));
+                //
+            }
             await Task.Delay(timeStep);
         }
+        
     }
     
     IEnumerator LerpVolume(bool toOn)
     {
         volumeOn = toOn;
+
+        if (recharging)
+        {
+            radioAnim.SetBool("On", false);
+            radioAnim.SetBool("Crank", true);
+        }
+        else if (!recharging && BatteryCharge > 0)
+        {
+            //radioAnim.SetBool("On", toOn);
+            radioAnim.SetBool("On", true);
+            radioAnim.SetBool("Crank", false);
+        }
+        else
+            radioAnim.SetBool("On", false);
+        
         yield return audioSource.VolumeTo(toOn ? 1F : 0F, 1F);
     }
     
     #endregion
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A)) PickedUpRadio = true;
-    }
 }
 
 public interface IRadio
