@@ -48,9 +48,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0a47964e65f22478993eb410802dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEBUG: 0
+  intro1: {fileID: 0}
+  intro2: {fileID: 0}
+  betweenIntroClipsTime: 1
+  voicePacks: []
+  minInterval: 30
+  maxInterval: 60
+  percentBreakdowns: []
   rechargeInput: {fileID: 11400000, guid: a1eaaea7c95bd2e4e8b03e4b53333e86, type: 2}
   rechargeRate: 0.05
   drainRate: 0.025
+  batteryMax: 50
 --- !u!82 &284909098
 AudioSource:
   m_ObjectHideFlags: 0
@@ -694,3 +703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementInput: {fileID: 11400000, guid: a9206ffbfaf920b4db8395c0d830dd0a, type: 2}
   movementSpeed: 3
+  sprintInput: {fileID: 11400000, guid: 102c5fbff2061fb4b84130e194559857, type: 2}
+  sprintingSpeed: 6
+  staminaDuration: 5
+  staminaRechargeRate: 0.25
