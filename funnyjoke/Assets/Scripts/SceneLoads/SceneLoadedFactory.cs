@@ -1,9 +1,19 @@
 using System;
+using UnityEngine.SceneManagement;
 
 public static class SceneLoadedFactory
 {
-    public static Action GetSceneFunction(int sceneIndex)
+    public static Action GetSceneFunction(Scene scene)
     {
+        int sceneIndex = 0;
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            if (SceneManager.GetSceneAt(i) != scene)
+                continue;
+            sceneIndex = i;
+            break;
+        }
+        
         return sceneIndex switch
         {
             0 => new MenuLoaded().OnSceneLoad,

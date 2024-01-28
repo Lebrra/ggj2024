@@ -67,10 +67,6 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        for (int i = 0; i < SceneManager.sceneCount; i++)
-        {
-            if (SceneManager.GetSceneAt(i) == scene)
-                SceneLoadedFactory.GetSceneFunction(i)();
-        }
+        SceneLoadedFactory.GetSceneFunction(scene)();
     }
 }
