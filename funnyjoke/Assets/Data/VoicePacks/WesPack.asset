@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73af25f43c67dda4988140adcffa92a9, type: 3}
   m_Name: WesPack
   m_EditorClassIdentifier: 
-  goodIntro:
-    name: 
-    clip: {fileID: 0}
-  badIntro:
-    name: 
-    clip: {fileID: 0}
+  startIntro: {fileID: 8300000, guid: 99e7604f94dc8a145876ecaced8d0080, type: 3}
+  endIntro: {fileID: 8300000, guid: 99e7604f94dc8a145876ecaced8d0080, type: 3}
   directionalBlurbs: {fileID: 11400000, guid: 77a92f5765c8a7248b2ee6de99873568, type: 2}
   jokeBlurbs: {fileID: 11400000, guid: 2b4da5e1d111dfe4b93532cc7d19852e, type: 2}
   helpfulBlurbs: {fileID: 11400000, guid: 7617e431e3eec074bb2e603eab875202, type: 2}
