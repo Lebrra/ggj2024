@@ -102,7 +102,6 @@ public class MazeGenerator : MonoBehaviour
 
     private void PlaceRoom(int xIndex, int zIndex)
     {
-        (float x, float z) roomCoordinates = (xIndex * roomSizes.x, zIndex * roomSizes.y);
         int angleMultiplier = Random.Range(0, 4);
         var rotation = Quaternion.Euler(0, angleMultiplier * 90, 0);
         rooms[(xIndex, zIndex)] = new GameObject("Room")
