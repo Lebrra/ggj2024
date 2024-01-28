@@ -16,12 +16,12 @@ public static class PlayerProgress
     {
         remaining = new List<Identifier>();
         remaining.Add(Identifier.Balloon);
-        remaining.Add(Identifier.Hat);
+        remaining.Add(Identifier.Ball);
         remaining.Add(Identifier.Stuffie);
         remaining.Add(Identifier.Ticket);
         remaining.Add(Identifier.Cotton_Candy);
         
-        ProgressUpdate?.Invoke(GetCurrentCompletion());
+        SetNewActive();
     }
     
     static void SetNewActive()
