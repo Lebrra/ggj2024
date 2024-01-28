@@ -12,7 +12,8 @@ public class AI_Manager : MonoBehaviour
     public ClownManager clown;
     public Routine AI_CurrentStance;
 
-    [SerializeField] private Clown_Level m_Level;
+    [SerializeField] private Clown_Level[] m_Levels;
+    [SerializeField] private int currentClownLevel = 0;
     [SerializeField] private int tempLevel;
     [SerializeField] private ClownStances stance = ClownStances.none;
     private void Awake() {
@@ -29,7 +30,7 @@ public class AI_Manager : MonoBehaviour
 
     private void Start() {
 
-        clown.ClownInitialize(m_Level);
+        clown.ClownInitialize(m_Levels[currentClownLevel]);
 
         GetNewStance();
         //AI_CurrentStance.Replace(clown.Stance_Idle());
@@ -42,28 +43,28 @@ public class AI_Manager : MonoBehaviour
         int rand = UnityEngine.Random.Range(1, 100);
         Debug.Log(rand);
         switch (rand) {
-            case int n when (n > 0 && n < m_Level.m_ChasePerc):
-                AI_CurrentStance.Replace(clown.Stance_Chase(m_Level.chase_speed, m_Level.chaseAmount));
+            case int n when (n > 0 && n < m_Levels[currentClownLevel].m_ChasePerc):
+                AI_CurrentStance.Replace(clown.Stance_Chase(m_Levels[currentClownLevel].chase_speed, m_Levels[currentClownLevel].chaseAmount));
                 stance = ClownStances.chase;
                 AI_CurrentStance.OnComplete(GetNewStance);
                 break;
-            case int n when (n > m_Level.m_ChasePerc && n < m_Level.m_ChasePerc + m_Level.m_RoamPerc):
+            case int n when (n > m_Levels[currentClownLevel].m_ChasePerc && n < m_Levels[currentClownLevel].m_ChasePerc + m_Levels[currentClownLevel].m_RoamPerc):
                 AI_CurrentStance.Replace(clown.Stance_Roam());
                 stance = ClownStances.roam;
                 AI_CurrentStance.OnComplete(GetNewStance);
                 break;
-            case int n when (n > m_Level.m_RoamPerc && n < m_Level.m_ChasePerc + m_Level.m_RoamPerc + m_Level.m_PatrolPerc):
+            case int n when (n > m_Levels[currentClownLevel].m_RoamPerc && n < m_Levels[currentClownLevel].m_ChasePerc + m_Levels[currentClownLevel].m_RoamPerc + m_Levels[currentClownLevel].m_PatrolPerc):
                 AI_CurrentStance.Replace(clown.Stance_Patrol(GetPatrolLandmark()));
                 stance = ClownStances.patrol;
                 AI_CurrentStance.OnComplete(GetNewStance);
                 break;
-            case int n when (n > m_Level.m_PatrolPerc && n < m_Level.m_ChasePerc + m_Level.m_RoamPerc + m_Level.m_PatrolPerc + m_Level.m_IdlePerc):
+            case int n when (n > m_Levels[currentClownLevel].m_PatrolPerc && n < m_Levels[currentClownLevel].m_ChasePerc + m_Levels[currentClownLevel].m_RoamPerc + m_Levels[currentClownLevel].m_PatrolPerc + m_Levels[currentClownLevel].m_IdlePerc):
                 AI_CurrentStance.Replace(clown.Stance_Idle());
                 stance = ClownStances.idle;
                 AI_CurrentStance.OnComplete(GetNewStance);
                 break;
             default: Debug.Log("wtf");
-                AI_CurrentStance.Replace(clown.Stance_Chase(m_Level.chase_speed, m_Level.chaseAmount));
+                AI_CurrentStance.Replace(clown.Stance_Chase(m_Levels[currentClownLevel].chase_speed, m_Levels[currentClownLevel].chaseAmount));
                 stance = ClownStances.chase;
                 AI_CurrentStance.OnComplete(GetNewStance);
                 break;
