@@ -24,7 +24,7 @@ public enum Identifier
     Hide = 0,
     Balloon,
     Stuffie,
-    Hat,
+    Ball,
     Ticket,
     Cotton_Candy
 }
