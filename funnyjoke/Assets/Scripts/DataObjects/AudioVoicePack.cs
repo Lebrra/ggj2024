@@ -6,6 +6,11 @@ using UnityEngine;
 public class AudioVoicePack : ScriptableObject
 {
     [SerializeField]
+    VOBlurb goodIntro;
+    [SerializeField]
+    VOBlurb badIntro;
+    
+    [SerializeField]
     AudioBlurbs directionalBlurbs;
     [SerializeField]
     AudioBlurbs jokeBlurbs;

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static void PlaySound(string key)
+    public static void PlayClip(AudioClip audioClip)
     {
-        Debug.Log($"[AudioManager] Play key: {key}");
+        Debug.Log($"[AudioMan] Play {audioClip.name}");
     }
 }

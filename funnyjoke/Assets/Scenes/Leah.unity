@@ -310,7 +310,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1396129001}
-  - component: {fileID: 1396129000}
+  - component: {fileID: 1396129002}
+  - component: {fileID: 1396129003}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -318,108 +319,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1396129000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1396128999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07a89f66679e5834c9cf2e6b0e051f59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectiveSpawns:
-  - transform: {fileID: 0}
-    directions: 2
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 4
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 8
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 16
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 32
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 6
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 18
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 12
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 24
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 34
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 40
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  hideSpawns:
-  - transform: {fileID: 0}
-    directions: 0
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 0
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 0
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 0
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  - transform: {fileID: 0}
-    directions: 0
-    loadedSpawnable:
-      key: 0
-      prefab: {fileID: 0}
-  landmarks:
-  - transform: {fileID: 0}
-    directions: 0
-    loadedSpawnable:
-      key: -1
-      prefab: {fileID: 0}
-  objectives: {fileID: 11400000, guid: 29a23a18b3f78ae4e8baff510b262803, type: 2}
-  hideables: {fileID: 11400000, guid: 57915ff6d9d835744bd367aaca4c22f1, type: 2}
 --- !u!4 &1396129001
 Transform:
   m_ObjectHideFlags: 0
@@ -435,3 +334,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1396129002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396128999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83f66c2a1dfb9a4fa29bf1adf087810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minInterval: 2
+  maxInterval: 8
+  radioOn: 0
+  voicePacks:
+  - {fileID: 11400000, guid: eb31ddafe05b23a489fbaa50fb83ec26, type: 2}
+  - {fileID: 11400000, guid: ce707f19b822e1c40af09d8b3b48ff8a, type: 2}
+  - {fileID: 11400000, guid: c788cd6af51457c4c9a14f2b72d5bb65, type: 2}
+  percentBreakdowns:
+  - helpfulHint: 50
+    hurtfulHint: 0
+    jokeGood: 25
+    jokeBad: 25
+    bigBadPercent: 10
+  - helpfulHint: 0
+    hurtfulHint: 0
+    jokeGood: 0
+    jokeBad: 0
+    bigBadPercent: 0
+  - helpfulHint: 0
+    hurtfulHint: 0
+    jokeGood: 0
+    jokeBad: 0
+    bigBadPercent: 0
+  - helpfulHint: 0
+    hurtfulHint: 0
+    jokeGood: 0
+    jokeBad: 0
+    bigBadPercent: 0
+  - helpfulHint: 0
+    hurtfulHint: 0
+    jokeGood: 0
+    jokeBad: 0
+    bigBadPercent: 0
+--- !u!114 &1396129003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396128999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07a89f66679e5834c9cf2e6b0e051f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveSpawns: []
+  hideSpawns: []
+  landmarks:
+  - transform: {fileID: 0}
+    directions: 40
+    loadedSpawnable:
+      key: 0
+      prefab: {fileID: 0}
+  objectives: {fileID: 11400000, guid: 29a23a18b3f78ae4e8baff510b262803, type: 2}
+  hideables: {fileID: 11400000, guid: 57915ff6d9d835744bd367aaca4c22f1, type: 2}

@@ -1,6 +1,5 @@
 fileFormatVersion: 2
-guid: b3fe6b8ae5fd5cd4db0664b494b2d5e4
-
+guid: 58efec715f4cbe642abaa84130e239db
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -8,7 +7,6 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
-
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -80,7 +78,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
