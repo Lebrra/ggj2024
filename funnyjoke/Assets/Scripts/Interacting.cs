@@ -37,6 +37,11 @@ public class Interacting : MonoBehaviour, IInputReceiver
         PlayerProgress.ProgressUpdate += Enable;
     }
 
+    private void Start()
+    {
+        Enable(-1);
+    }
+
     public void Enable(int _)
     {
         isEnabled = true;
@@ -64,6 +69,9 @@ public class Interacting : MonoBehaviour, IInputReceiver
         {
             case Identifier.Hide | Identifier.Landmark:
                 Debug.LogError("Invaild ui code");
+                break;
+            case Identifier.Cotton_Candy:
+                inventoryAnim.SetBool("cottoncandy", true);
                 break;
             default:
                 inventoryAnim.SetBool(item.ToString().Trim(new char[] {'_'}).ToLower(), true);
