@@ -151,7 +151,7 @@ public class ClownManager : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         if(collision.transform.tag == "Player") {
             Debug.Log("You lost!");
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
             
         }
 
