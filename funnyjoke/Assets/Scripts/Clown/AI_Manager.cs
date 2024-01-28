@@ -8,7 +8,7 @@ public class AI_Manager : MonoBehaviour
 {
     public static AI_Manager instance;
 
-    
+    public Landmark landmark;
     public ClownManager clown;
     public Routine AI_CurrentStance;
 
@@ -30,7 +30,8 @@ public class AI_Manager : MonoBehaviour
         clown.ClownInitialize(m_Level);
 
         GetNewStance();
-
+        //AI_CurrentStance.Replace(clown.Stance_Idle());
+        
     }
 
     
@@ -49,12 +50,12 @@ public class AI_Manager : MonoBehaviour
                 stance = ClownStances.roam;
                 AI_CurrentStance.OnComplete(GetNewStance);
                 break;
-            case int n when (n > m_Level.m_RoamPerc && n < m_Level.m_RoamPerc + m_Level.m_PatrolPerc):
-                AI_CurrentStance.Replace(clown.Stance_Patrol());
+            case int n when (n > m_Level.m_RoamPerc && n < m_Level.m_ChasePerc + m_Level.m_RoamPerc + m_Level.m_PatrolPerc):
+                AI_CurrentStance.Replace(clown.Stance_Patrol(landmark));
                 stance = ClownStances.patrol;
                 AI_CurrentStance.OnComplete(GetNewStance);
                 break;
-            case int n when (n > m_Level.m_PatrolPerc && n < m_Level.m_PatrolPerc + m_Level.m_IdlePerc):
+            case int n when (n > m_Level.m_PatrolPerc && n < m_Level.m_ChasePerc + m_Level.m_RoamPerc + m_Level.m_PatrolPerc + m_Level.m_IdlePerc):
                 AI_CurrentStance.Replace(clown.Stance_Idle());
                 stance = ClownStances.idle;
                 AI_CurrentStance.OnComplete(GetNewStance);

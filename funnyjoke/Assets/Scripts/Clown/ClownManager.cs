@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 using BeauRoutine;
+using System.Linq;
 public class ClownManager : MonoBehaviour
 {
     
@@ -11,11 +12,11 @@ public class ClownManager : MonoBehaviour
     public GameObject player;
 
     private NavMeshAgent agent;
-    private float default_speed;
+    [SerializeField] private float default_speed;
     private NavMeshPath currentPath;
 
     [SerializeField] private List<Clown_Level> m_Levels = new List<Clown_Level>();
-
+    
     private void Awake() {
         
 
@@ -47,7 +48,7 @@ public class ClownManager : MonoBehaviour
         agent.speed = speed;
 
         yield return null; //extra frame to allow calculations
-        Debug.Log(CalculateDistance(this.transform.position, pos));
+        //Debug.Log(CalculateDistance(this.transform.position, pos));
         SetDestination(pos);
         yield return new WaitForSeconds(CalculateDistance(this.transform.position, pos) / speed);
 
@@ -62,13 +63,17 @@ public class ClownManager : MonoBehaviour
     private void Roam() {
         agent.speed = default_speed;
         StartCoroutine(Stance_Roam());
+
+        
     }
 
     public IEnumerator Stance_Roam() {
 
-        agent.SetDestination(MapLoader.GetRandomLandmark().position);
+        Vector3 pos = MapLoader.GetRandomLandmark().position;
 
-        yield return null;
+        agent.SetDestination(pos);
+
+        yield return new WaitForSeconds(CalculateDistance(this.transform.position, pos) / default_speed);
     }
 
     private void Idle() {
@@ -78,22 +83,19 @@ public class ClownManager : MonoBehaviour
     }
 
     public IEnumerator Stance_Idle(float idleTime = 20) {
-        float i = 0;
-        float duration = UnityEngine.Random.Range(1, 3);
-        float t = idleTime;
-        Quaternion newRotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 360), 0));
+        Debug.Log("Test");
+        Quaternion newRotation;
         Quaternion currentRotation = transform.rotation;
+
+        int currentIterations = 0;
+
         do {
-            t -= Time.deltaTime;
+            newRotation = Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 360), 0));
+            yield return transform.RotateQuaternionTo(newRotation, 4);
+            currentIterations++;
 
-            transform.rotation = Quaternion.Slerp(currentRotation, newRotation, i / duration);
-            i += Time.deltaTime;
-            yield return null;
-        } while (i <= duration);
+        } while (currentIterations != 5);
 
-        if(t > 0) {
-            StartCoroutine(Stance_Idle(t));
-        }
         yield return null;
     }
 
@@ -102,7 +104,25 @@ public class ClownManager : MonoBehaviour
 
     }
 
-    public IEnumerator Stance_Patrol() {
+    public IEnumerator Stance_Patrol(Landmark landmark = null) {
+        int currentIterations = 0;
+        
+
+        do {
+            Vector3 pos;
+            NavMeshHit hit;
+            if(NavMesh.SamplePosition(landmark.GetPointFromLandmark(), out hit, landmark.collider.radius, NavMesh.AllAreas)){
+                pos = hit.position;
+                agent.SetDestination(pos);
+                yield return new WaitForSeconds(CalculateDistance(this.transform.position, pos) / default_speed);
+            }
+
+            
+            currentIterations++;
+
+        } while (currentIterations != 5);
+
+
         yield return null;
     }
 
