@@ -71,7 +71,7 @@ public class AI_Manager : MonoBehaviour
         }
 
     }
-
+    
     private Landmark GetPatrolLandmark() {
         float dist = Vector3.Distance(clown.transform.position, landmarks[0].transform.position);
         int landmarkIndex = 0;
