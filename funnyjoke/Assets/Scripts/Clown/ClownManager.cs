@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 using BeauRoutine;
+using UnityEngine.SceneManagement;
 using System.Linq;
 public class ClownManager : MonoBehaviour
 {
@@ -149,7 +150,9 @@ public class ClownManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         if(collision.transform.tag == "Player") {
-            //player dead
+            Debug.Log("You lost!");
+            SceneManager.LoadScene(1);
+            
         }
 
     }
