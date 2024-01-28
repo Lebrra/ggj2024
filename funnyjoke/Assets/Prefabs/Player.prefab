@@ -88,6 +88,8 @@ MonoBehaviour:
   rechargeRate: 1
   drainRate: 2
   batteryMax: 30
+  recharging: 0
+  radioAnim: {fileID: 0}
 --- !u!82 &284909098
 AudioSource:
   m_ObjectHideFlags: 0
@@ -631,7 +633,7 @@ GameObject:
   - component: {fileID: 2071936615}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
