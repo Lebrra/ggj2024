@@ -19,5 +19,13 @@ MonoBehaviour:
     m_Id: ec06b9d1-a591-4c54-8dd9-be79f4c4c2b6
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 53255ed9-f5a1-4575-b030-ab08c5303b12
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 0
     m_Flags: 0
