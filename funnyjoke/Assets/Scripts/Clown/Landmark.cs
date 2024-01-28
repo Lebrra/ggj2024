@@ -10,7 +10,7 @@ public class Landmark : MonoBehaviour
     }
 
     public Vector3 GetPointFromLandmark() {
-        return UnityEngine.Random.insideUnitSphere * collider.radius;
+        return (UnityEngine.Random.insideUnitSphere * collider.radius) + transform.position;
     }
 
 
