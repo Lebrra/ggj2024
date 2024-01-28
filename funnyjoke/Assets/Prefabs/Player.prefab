@@ -48,9 +48,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0a47964e65f22478993eb410802dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEBUG: 0
+  intro1: {fileID: 0}
+  intro2: {fileID: 0}
+  betweenIntroClipsTime: 1
+  voicePacks:
+  - {fileID: 11400000, guid: eb31ddafe05b23a489fbaa50fb83ec26, type: 2}
+  - {fileID: 11400000, guid: c788cd6af51457c4c9a14f2b72d5bb65, type: 2}
+  - {fileID: 11400000, guid: ce707f19b822e1c40af09d8b3b48ff8a, type: 2}
+  minInterval: 30
+  maxInterval: 60
+  percentBreakdowns:
+  - helpfulHint: 60
+    hurtfulHint: 0
+    jokeGood: 20
+    jokeBad: 20
+    bigBadPercent: 0
+  - helpfulHint: 60
+    hurtfulHint: 20
+    jokeGood: 10
+    jokeBad: 10
+    bigBadPercent: 15
+  - helpfulHint: 60
+    hurtfulHint: 20
+    jokeGood: 10
+    jokeBad: 10
+    bigBadPercent: 30
+  - helpfulHint: 25
+    hurtfulHint: 25
+    jokeGood: 25
+    jokeBad: 25
+    bigBadPercent: 45
+  - helpfulHint: 20
+    hurtfulHint: 30
+    jokeGood: 25
+    jokeBad: 25
+    bigBadPercent: 60
   rechargeInput: {fileID: 11400000, guid: a1eaaea7c95bd2e4e8b03e4b53333e86, type: 2}
-  rechargeRate: 0.05
-  drainRate: 0.025
+  rechargeRate: 1
+  drainRate: 2
+  batteryMax: 30
 --- !u!82 &284909098
 AudioSource:
   m_ObjectHideFlags: 0
@@ -694,3 +731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementInput: {fileID: 11400000, guid: a9206ffbfaf920b4db8395c0d830dd0a, type: 2}
   movementSpeed: 3
+  sprintInput: {fileID: 11400000, guid: 102c5fbff2061fb4b84130e194559857, type: 2}
+  sprintingSpeed: 6
+  staminaDuration: 5
+  staminaRechargeRate: 0.25
