@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27fe7ba52b8f011468187f9c5c4416b3, type: 3}
   m_Name: Lucas_Jokes
   m_EditorClassIdentifier: 
-  blurbs: []
+  blurbs:
+  - name: haha
+    clip: {fileID: 8300000, guid: 2039af96ca2ef2a4da44dea6d600429b, type: 3}
+  - name: joke
+    clip: {fileID: 8300000, guid: 26c021ba1546cea45b0aeca5457c9e9a, type: 3}
+  - name: Apple sauce
+    clip: {fileID: 8300000, guid: b93f5e973c33b2a448bb11df3457cd03, type: 3}
+  - name: three days grace
+    clip: {fileID: 8300000, guid: 2325ef3299c820849b79fbb24e787ed5, type: 3}
+  - name: oranges
+    clip: {fileID: 8300000, guid: f666174a23e4d4546a8f0a553f28301e, type: 3}
+  - name: tampico
+    clip: {fileID: 8300000, guid: c126846ede53d544f8f679d8bb9a8ded, type: 3}
