@@ -55,7 +55,7 @@ MonoBehaviour:
   voicePacks:
   - {fileID: 11400000, guid: eb31ddafe05b23a489fbaa50fb83ec26, type: 2}
   - {fileID: 11400000, guid: c788cd6af51457c4c9a14f2b72d5bb65, type: 2}
-  - {fileID: 11400000, guid: ce707f19b822e1c40af09d8b3b48ff8a, type: 2}
+  - {fileID: 11400000, guid: a23148b35f64d17419f49d9e3d7127a4, type: 2}
   minInterval: 30
   maxInterval: 60
   percentBreakdowns:

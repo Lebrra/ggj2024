@@ -30,6 +30,7 @@ public class AI_Manager : MonoBehaviour
 
     private void Start() {
 
+        PlayerProgress.ProgressUpdate += (level) => currentClownLevel = level;
         clown.ClownInitialize(m_Levels[currentClownLevel]);
 
         GetNewStance();
