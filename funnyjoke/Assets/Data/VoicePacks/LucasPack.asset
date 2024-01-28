@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73af25f43c67dda4988140adcffa92a9, type: 3}
   m_Name: LucasPack
   m_EditorClassIdentifier: 
-  startIntro: {fileID: 0}
-  endIntro: {fileID: 0}
-  directionalBlurbs: {fileID: 0}
-  jokeBlurbs: {fileID: 0}
-  helpfulBlurbs: {fileID: 0}
-  hurtfulBlurbs: {fileID: 0}
+  startIntro: {fileID: 8300000, guid: df7d0a1d479886e45b0ceb639c08004e, type: 3}
+  endIntro: {fileID: 8300000, guid: 88055b5a74f28ea44a6554b8f1243ad8, type: 3}
+  directionalBlurbs: {fileID: 11400000, guid: c520b91be3fa1f64fba2349281e4ab16, type: 2}
+  jokeBlurbs: {fileID: 11400000, guid: 2accf3f19ae1c1749aff321afdd10cac, type: 2}
+  helpfulBlurbs: {fileID: 11400000, guid: 6fc810757c711ec4b9a441fde4d4c6c6, type: 2}
+  hurtfulBlurbs: {fileID: 11400000, guid: cf38e6705e1870a41a0bc5fdd572b057, type: 2}

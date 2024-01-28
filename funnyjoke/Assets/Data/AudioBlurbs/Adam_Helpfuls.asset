@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blurbs:
   - name: ball
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 3234657b64f456c43827afe51473f497, type: 3}
   - name: stuffie
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 742120408f7ee2f4e934646c6cf164ff, type: 3}
   - name: ticket
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4dd2375a8b8bb7d41b60ad641ed07714, type: 3}
   - name: cotton_candy
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0fc03a74e8d043a46a9c9c7246e5e250, type: 3}
   - name: balloon
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2581e45118762a345a78b5cce60b843c, type: 3}

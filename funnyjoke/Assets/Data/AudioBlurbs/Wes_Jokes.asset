@@ -14,10 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blurbs:
   - name: funny
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: b43a16cdb7fe9ae469310489ef87e7be, type: 3}
   - name: good joke
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 599ac73f11e2b40478ca64a7d2c15681, type: 3}
   - name: haha
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: b06c7af55566b0a468677d31c583a347, type: 3}
   - name: nice
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: c06b9a8e6dd9d924981d48a78a5bc357, type: 3}
+  - name: laugh a lot
+    clip: {fileID: 8300000, guid: c06b9a8e6dd9d924981d48a78a5bc357, type: 3}
+  - name: orange juice
+    clip: {fileID: 8300000, guid: a43b165838d085c41b9eb48de9f30fc1, type: 3}
+  - name: Maple Syrup
+    clip: {fileID: 8300000, guid: 60fc272ba0397f24e8e477c0afc54cbf, type: 3}
