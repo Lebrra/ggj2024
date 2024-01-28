@@ -8,7 +8,7 @@ public class Interacting : MonoBehaviour, IInputReceiver
 
     [SerializeField]
     FloatInput m_interact;
-    
+
 
     public void DeregisterInputs(Player.PlayerIdentifier playerIdentifier)
     {
@@ -22,17 +22,9 @@ public class Interacting : MonoBehaviour, IInputReceiver
 
     private void takeInput(float v)
     {
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (v == 0)
+        {
+            return;
+        }
     }
 }
