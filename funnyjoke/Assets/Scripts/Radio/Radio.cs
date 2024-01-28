@@ -79,7 +79,7 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
         
         if (DEBUG) PlayerProgress.InitializeProgress();
         PlayerProgress.ProgressUpdate += RadioUpdate;
-        Initialize();
+        //Initialize();
     }
 
     private void OnDestroy()
@@ -131,6 +131,11 @@ public class Radio : MonoBehaviour, IInputReceiver, IRadio
     
     public void PlayClip(AudioClip clip)
     {
+        if (clip == null)
+        {
+            Debug.LogError("No clip to play!");
+            return;
+        }
         audioSource.clip = clip;
         audioSource.Play();
     }
