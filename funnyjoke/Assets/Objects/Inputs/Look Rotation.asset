@@ -20,12 +20,44 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: b06efd4b-7492-421a-8b14-51b8bc39f461
-      m_Path: <Mouse>/delta
+    - m_Name: Mouse
+      m_Id: c92e5347-c1e2-4f27-ac1a-da5d42112f36
+      m_Path: 2DVector
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Input
-      m_Flags: 0
+      m_Flags: 4
+    - m_Name: up
+      m_Id: df1182c9-7ce3-4a31-a65d-d9435cf9c47a
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 8e19c970-93a6-4d6e-ba4e-46f0838a9592
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    - m_Name: left
+      m_Id: cbbfbbd0-74be-4066-91d6-6c7a2727199b
+      m_Path: <Mouse>/delta/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
+    - m_Name: right
+      m_Id: a7441488-86ad-47b7-944d-57eafa73113d
+      m_Path: <Mouse>/delta/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 8
     m_Flags: 0
