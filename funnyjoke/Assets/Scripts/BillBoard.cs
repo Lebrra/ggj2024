@@ -14,5 +14,6 @@ public class BillBoard : MonoBehaviour
     void Update()
     {
         this.gameObject.transform.LookAt(m_camera.transform);
+        this.gameObject.transform.eulerAngles = new Vector3(0, this.transform.eulerAngles.y, this.transform.eulerAngles.z);
     }
 }
