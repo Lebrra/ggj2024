@@ -24,12 +24,12 @@ public static class DirectionUtils
         }
     }
     
-    static Direction AddDirection(this Direction self, Direction other)
+    public static Direction AddDirection(this Direction self, Direction other)
     {
         return self | other;
     }
 
-    static Direction RemoveDirection(this Direction self, Direction flag) 
+    public static Direction RemoveDirection(this Direction self, Direction flag) 
     {
         return self & ~flag;
     }
@@ -52,5 +52,5 @@ public enum Direction
     North = 4,
     South = 8,
     East = 16,
-    West = 32
+    West = 32,
 }
