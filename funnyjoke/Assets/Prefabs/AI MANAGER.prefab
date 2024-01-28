@@ -53,33 +53,33 @@ MonoBehaviour:
   - chase_speed: 0
     chaseAmount: 0
     m_ChasePerc: 0
-    m_RoamPerc: 33
+    m_RoamPerc: 34
     m_PatrolPerc: 33
     m_IdlePerc: 33
-  - chase_speed: 0
-    chaseAmount: 0
-    m_ChasePerc: 0
-    m_RoamPerc: 0
-    m_PatrolPerc: 0
-    m_IdlePerc: 0
-  - chase_speed: 0
-    chaseAmount: 0
-    m_ChasePerc: 0
-    m_RoamPerc: 0
-    m_PatrolPerc: 0
-    m_IdlePerc: 0
-  - chase_speed: 0
-    chaseAmount: 0
-    m_ChasePerc: 0
-    m_RoamPerc: 0
-    m_PatrolPerc: 0
-    m_IdlePerc: 0
-  - chase_speed: 0
-    chaseAmount: 0
-    m_ChasePerc: 0
-    m_RoamPerc: 0
-    m_PatrolPerc: 0
-    m_IdlePerc: 0
+  - chase_speed: 5
+    chaseAmount: 2
+    m_ChasePerc: 10
+    m_RoamPerc: 30
+    m_PatrolPerc: 30
+    m_IdlePerc: 30
+  - chase_speed: 5
+    chaseAmount: 3
+    m_ChasePerc: 15
+    m_RoamPerc: 45
+    m_PatrolPerc: 20
+    m_IdlePerc: 20
+  - chase_speed: 5
+    chaseAmount: 3
+    m_ChasePerc: 25
+    m_RoamPerc: 25
+    m_PatrolPerc: 25
+    m_IdlePerc: 25
+  - chase_speed: 5
+    chaseAmount: 5
+    m_ChasePerc: 60
+    m_RoamPerc: 20
+    m_PatrolPerc: 10
+    m_IdlePerc: 10
   currentClownLevel: 0
   tempLevel: 0
   stance: 4
