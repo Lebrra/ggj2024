@@ -8,7 +8,7 @@ public class AI_Manager : MonoBehaviour
 {
     public static AI_Manager instance;
 
-    public Landmark landmark;
+    public Landmark[] landmarks;
     public ClownManager clown;
     public Routine AI_CurrentStance;
 
@@ -53,7 +53,7 @@ public class AI_Manager : MonoBehaviour
                 AI_CurrentStance.OnComplete(GetNewStance);
                 break;
             case int n when (n > m_Level.m_RoamPerc && n < m_Level.m_ChasePerc + m_Level.m_RoamPerc + m_Level.m_PatrolPerc):
-                AI_CurrentStance.Replace(clown.Stance_Patrol(landmark));
+                AI_CurrentStance.Replace(clown.Stance_Patrol(GetPatrolLandmark()));
                 stance = ClownStances.patrol;
                 AI_CurrentStance.OnComplete(GetNewStance);
                 break;
@@ -71,8 +71,26 @@ public class AI_Manager : MonoBehaviour
 
     }
 
+    private Landmark GetPatrolLandmark() {
+        float dist = Vector3.Distance(clown.transform.position, landmarks[0].transform.position);
+        int landmarkIndex = 0;
+        for(int i = 0; i < landmarks.Length; i++) {
+            float val = Vector3.Distance(clown.transform.position, landmarks[i].transform.position);
+            if (val <= dist) {
+                landmarkIndex = i;
+                dist = val;
+            }
+        }
+
+        return landmarks[landmarkIndex];
+
+    }
+
+
 
 }
+
+
 
 /// <summary>
 /// Clown Levels are used to hold onto current Clown values. Level increases when objectives are obtained.
