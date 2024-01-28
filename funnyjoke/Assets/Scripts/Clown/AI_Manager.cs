@@ -22,6 +22,8 @@ public class AI_Manager : MonoBehaviour
         else {
             Destroy(this.gameObject);
         }
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
