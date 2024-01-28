@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blurbs:
   - name: funny
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 15d30b0c631bbc143b48ed33c5146791, type: 3}
   - name: good joke
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: de2d3650d6ec643499d16fbbc1cc0d38, type: 3}
   - name: haha
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: aaa25f5593935904981580eafc90dde0, type: 3}
   - name: nice
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 554181978b732e94db9fda5eaaac417a, type: 3}

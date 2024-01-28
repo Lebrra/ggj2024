@@ -30,6 +30,7 @@ public static class PlayerProgress
         System.Random rnd = new System.Random();
         current = remaining.OrderBy((_) => rnd.Next()).FirstOrDefault();
         remaining.Remove(current);
+        Debug.Log(current);
         
         ProgressUpdate?.Invoke(GetCurrentCompletion());
     }

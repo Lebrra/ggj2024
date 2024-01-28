@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73af25f43c67dda4988140adcffa92a9, type: 3}
   m_Name: AdamPack
   m_EditorClassIdentifier: 
-  startIntro: {fileID: 8300000, guid: 14ebb3e2b1c57c549b3101fb9354e075, type: 3}
-  endIntro: {fileID: 8300000, guid: 14ebb3e2b1c57c549b3101fb9354e075, type: 3}
+  startIntro: {fileID: 8300000, guid: 7f726da48f187bb4f9fc64f97b916083, type: 3}
+  endIntro: {fileID: 8300000, guid: a84f7a98200285044bca5ff6a97a1ba6, type: 3}
   directionalBlurbs: {fileID: 11400000, guid: 659014139d95a1c45bb9c60f837988ad, type: 2}
   jokeBlurbs: {fileID: 11400000, guid: 4c1e3fbf68e4a9c4c9f70dcc587df484, type: 2}
   helpfulBlurbs: {fileID: 11400000, guid: 1f43892671c6c2040acec5d755d40df1, type: 2}

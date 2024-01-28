@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27fe7ba52b8f011468187f9c5c4416b3, type: 3}
+  m_Name: Lucas_Directions
+  m_EditorClassIdentifier: 
+  blurbs:
+  - name: west
+    clip: {fileID: 8300000, guid: c45c379119c3c8444920081de5bdd6a3, type: 3}
+  - name: north
+    clip: {fileID: 8300000, guid: dbbaca55fe3feed4ab7d0786c03c28bd, type: 3}
+  - name: east
+    clip: {fileID: 8300000, guid: 4a99b8a21f917574e972c173e716545a, type: 3}
+  - name: south
+    clip: {fileID: 8300000, guid: 8aa8e7bdce5378a4991a2ad70904fd4b, type: 3}
+  - name: northeast
+    clip: {fileID: 8300000, guid: 0653c6345ae48fc41be7a41b9dce3772, type: 3}
+  - name: northwest
+    clip: {fileID: 8300000, guid: b3511855184f398438f838a2f2a90534, type: 3}
+  - name: southeast
+    clip: {fileID: 8300000, guid: edcd233e64698d74a855774f6c3ce80d, type: 3}
+  - name: southwest
+    clip: {fileID: 8300000, guid: 2c0afd6d396b7c54e9eb884d5e4bdefa, type: 3}
+  - name: central
+    clip: {fileID: 0}
