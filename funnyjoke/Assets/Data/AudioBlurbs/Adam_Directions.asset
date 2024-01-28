@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blurbs:
   - name: west
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5d98a6728635b394e9cc06607eea155f, type: 3}
   - name: north
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: dbe0b1fe6517a8f42835ab0636d6bec2, type: 3}
   - name: east
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 43d8ff7cc051571499f99f5600be95ea, type: 3}
   - name: south
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: c22129e0e29e1bc4a9d52218c590e229, type: 3}
   - name: northeast
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 636bf3b91ce7d094683b1995022b9efc, type: 3}
   - name: northwest
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: d92187c4d5462264ebd329283a331684, type: 3}
   - name: southwest
     clip: {fileID: 0}
   - name: southeast
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 783e09957459c534ba7592e7a6511441, type: 3}
   - name: central
     clip: {fileID: 0}
