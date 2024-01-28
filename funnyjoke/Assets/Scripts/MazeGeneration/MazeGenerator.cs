@@ -24,7 +24,7 @@ public class MazeGenerator : MonoBehaviour
 
     private GameObject roomParent;
     private GameObject wallsParent;
-    private bool exitBuilt;
+    private bool entrance;
 
     private void Start()
     {
@@ -50,21 +50,11 @@ public class MazeGenerator : MonoBehaviour
         }
 
         CreateMaze();
-
-        // for (int i = roomLayout.GetLength(0) - 1; i >= 0; i--)
-        // {
-        //     for (int j = roomLayout.GetLength(1) - 1; j >= 0; j--)
-        //     {
-        //         if (!roomLayout[i, j])
-        //             continue;
-        //         PlaceWalls(i, j);
-        //     }
-        // }
     }
 
     private void ResetValues()
     {
-        exitBuilt = false;
+        entrance = false;
         roomIndex = 0;
         potentialRooms.Clear();
         roomIndices.Clear();
@@ -158,8 +148,11 @@ public class MazeGenerator : MonoBehaviour
         int neighborIndex = rooms.TryGetValue(data.RoomsIndex, out var room) ? roomIndices[room] : -1;
         ReduceToHamiltonianPath(ref buildPathway, data.RoomIndex, neighborIndex);
         if (!buildPathway)
-            Instantiate(wallPrefab, data.WallPosition, data.WallRotation, wallsParent.transform);
-        exitBuilt = true;
+        {
+            if (entrance)
+                Instantiate(wallPrefab, data.WallPosition, data.WallRotation, wallsParent.transform);
+            entrance = true;
+        }
         usedWallPositions.Add(data.WallPosition);
     }
 
@@ -184,23 +177,21 @@ public class MazeGenerator : MonoBehaviour
         var closed = new List<Vector2Int>();
         for (int i = 0; i < numRoomsPerDirection.x * numRoomsPerDirection.y; i++)
         {
-            if (x * y == 72)
-                Debug.Log("");
             PlaceWalls(x, y);
             closed.Add(new Vector2Int(x, y));
-            
+
             var indices = new Vector2Int(x + 1, y);
             if (indices.x < numRoomsPerDirection.x && !closed.Contains(indices) && !opened.Contains(indices))
                 opened.Add(indices);
-            
+
             indices = new Vector2Int(x - 1, y);
             if (indices.x >= 0 && !closed.Contains(indices) && !opened.Contains(indices))
                 opened.Add(indices);
-            
+
             indices = new Vector2Int(x, y + 1);
             if (indices.y < numRoomsPerDirection.y && !closed.Contains(indices) && !opened.Contains(indices))
                 opened.Add(indices);
-            
+
             indices = new Vector2Int(x, y - 1);
             if (indices.y >= 0 && !closed.Contains(indices) && !opened.Contains(indices))
                 opened.Add(indices);
